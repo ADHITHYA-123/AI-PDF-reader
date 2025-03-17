@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+
+  <div class="w-full max-w-4xl p-6 bg-white shadow-md rounded-lg">
+    <h1 class="text-2xl font-bold mb-4">PDF Reader with AI Assistant</h1>
+
+    <!-- PDF Upload -->
+    <input 
+      type="file" 
+      id="pdf-upload" 
+      accept="application/pdf"
+      class="border rounded-lg p-2 w-full mb-4"
+    />
+
+    <!-- PDF Display Container -->
+    <div 
+      id="pdf-viewer" 
+      class="border h-96 overflow-y-scroll p-4 bg-gray-50"
+    ></div>
+  </div>
+
+  <!-- Popup for AI Response -->
+<div 
+id="popup" 
+class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center overflow-y-scroll"
+onclick="closePopup()" 
+>
+<div 
+  class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg"
+  onclick="event.stopPropagation()" 
+>
+  <p class="font-bold mb-2">Selected Text:</p>
+  <p id="selected-text" class="mb-4 text-blue-700"></p>
+  
+  <textarea 
+    id="ai-prompt" 
+    class="w-full border p-2 rounded-lg mb-4 overflow-y-scroll" 
+    placeholder="Ask AI..."
+  ></textarea>
+
+  <button 
+    onclick="handleAIRequest()" 
+    class="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-blue-700"
+  >
+    Ask AI
+  </button>
+  <button 
+    onclick="closePopup()" 
+    class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-700"
+  >
+    Close
+  </button>
+
+  <!-- AI Response -->
+  <div id="ai-response" class="mt-4 text-black-700 overflow-y-scroll max-h-40"></div>
+</div>
+</div>
+
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

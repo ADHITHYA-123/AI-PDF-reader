@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Import TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PDF.js library -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"
+      integrity="sha512-U5C477Z8VvmbYAoV4HDq17tf4wG6HXPC6/KM9+0/wEXQQ13gmKY2Zb0Z2vu0VNUWch4GlJ+Tl/dfoLOH4i2msw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>PDF Viewer</title>
+  </head>
+  <body class="bg-gray-900 text-gray-200 font-sans">
+    <main class="w-full min-h-[90vh] flex flex-col justify-center items-center p-5">
+      <h3 class="text-2xl text-center text-gray-400 mb-4">
+        Open a PDF file
+      </h3>
+      <!-- Container wrapping the canvas and the text layer -->
+      <div class="relative">
+        <canvas id="pdfViewer" class="pdf-viewer bg-white hidden"></canvas>
+        <!-- Text layer overlay for selectable text -->
+        <div
+          id="textLayer"
+          class="absolute top-[-20px] left-0 w-full h-full pointer-events-none text-transparent "
+        ></div>
+      </div>
+    </main>
+    <footer class="sticky bottom-0 h-[10vh] bg-black">
+      <ul
+        class="w-full h-full flex justify-between items-center px-5"
+      >
+        <li>
+          <button id="openPDF" class="text-lg font-bold flex items-center space-x-2">
+            <span>Open</span>
+            <i class="fas fa-folder-open"></i>
+          </button>
+          <input type="file" id="inputFile" class="hidden" />
+        </li>
+        <li class="pagination text-xl">
+          <button id="previous" class="text-2xl">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+          </button>
+          <span id="current_page" class="mx-2">0 of 0</span>
+          <button id="next" class="text-2xl">
+            <i class="fas fa-arrow-alt-circle-right"></i>
+          </button>
+        </li>
+        <li class="flex items-center space-x-2">
+          <span id="zoomValue" class="text-sm w-16">150%</span>
+          <input
+            type="range"
+            id="zoom"
+            name="cowbell"
+            min="100"
+            max="300"
+            value="150"
+            step="50"
+            disabled
+            class="accent-blue-500"
+          />
+        </li>
+      </ul>
+    </footer>
+    <script src="script.js" type="text/javascript"></script>
+  </body>
+</html>
